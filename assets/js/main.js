@@ -8,37 +8,53 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro. */
 // Creare una funzione che al click del bottone Play generi una griglia quadrata
 function generateGrid(number_of_cells, container, element_name, class_name) {
     const cellsContainer = document.querySelector(container);
+    const squareSide = Math.sqrt(number_of_cells);
     for (let i = 1; i <= number_of_cells; i++) {
         const cell = document.createElement(element_name);
-        cell.classList.add(class_name);
-        cell.innerHTML = `${i}`;
-        cellsContainer.append(cell);
+        cell.style.width = calc(100 % /squareSide);
+            cell.classList.add(class_name);
+
+            cell.innerHTML = `${i}`; cellsContainer.append(cell);
+        }
     }
-}
 
-const playBtn = document.getElementById("playBtn");
-playBtn.addEventListener("click", generateGrid(100, ".cells", "div", "cell"));
+    // Leggere il valore di difficoltà inserito dall'utente e generare il corrispondente numero di caselle
+    const playBtn = document.getElementById("playBtn");
+    playBtn.addEventListener("click", function() {
 
-// Leggere il valore di difficoltà inserito dall'utente e generare il corrispondente numero di caselle
-let input = document.getElementById("difficulty").value;
+        let input = document.getElementById("difficulty").value;
 
-switch (input) {
-    case 1:
-        generateGrid(100, ".cells", "div", "cell");
-        break;
+        switch (input) {
+            case 1:
+                generateGrid(100, ".cells", "div", "cell");
+                break;
 
-    case 2:
-        generateGrid(81, ".cells", "div", "cell");
-        break;
+            case 2:
+                generateGrid(81, ".cells", "div", "cell");
+                break;
 
-    case 3:
-        generateGrid(49, ".cells", "div", "cell");
-        break;
+            case 3:
+                generateGrid(49, ".cells", "div", "cell");
+                break;
 
-    default:
-        alert("Error");
-        break;
-}
+            default:
+                alert("Error");
+                break;
+        }
+    })
 
 
-// Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
+    // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
+
+    function activateCell(selector, active_class) {
+        const cells = selectCells(selector);
+
+        for (let index = 0; index < cells.length; index++) {
+            const cell = cells[index];
+            cell.addEventListener('click', function() {
+                cell.classList.add(active_class);
+            })
+        }
+    }
+
+    activateCell('.cells', 'selected');
