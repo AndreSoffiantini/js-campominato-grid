@@ -11,9 +11,34 @@ function generateGrid(number_of_cells, container, element_name, class_name) {
     for (let i = 1; i <= number_of_cells; i++) {
         const cell = document.createElement(element_name);
         cell.classList.add(class_name);
+        cell.innerHTML = `${i}`;
         cellsContainer.append(cell);
     }
 }
 
 const playBtn = document.getElementById("playBtn");
 playBtn.addEventListener("click", generateGrid(100, ".cells", "div", "cell"));
+
+// Leggere il valore di difficoltà inserito dall'utente e generare il corrispondente numero di caselle
+let input = document.getElementById("difficulty").value;
+
+switch (input) {
+    case 1:
+        generateGrid(100, ".cells", "div", "cell");
+        break;
+
+    case 2:
+        generateGrid(81, ".cells", "div", "cell");
+        break;
+
+    case 3:
+        generateGrid(49, ".cells", "div", "cell");
+        break;
+
+    default:
+        alert("Error");
+        break;
+}
+
+
+// Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
