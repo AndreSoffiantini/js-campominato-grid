@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#site_header,
+#site_footer {
+    height: 10vh;
+}
+
+#site_main {
+    height: 80vh;
+    background-color: aquamarine;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    height: 100%;
+}
+
+.col {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.cells {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: 10%;
+    aspect-ratio: 1;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    background-color: cornflowerblue;
+    color: white;
+}
