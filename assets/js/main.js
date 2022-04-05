@@ -8,7 +8,13 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro. */
 // Creare una funzione che al click del bottone Play generi una griglia quadrata
 function generateGrid(number_of_cells, container, element_name, class_name) {
     const cellsContainer = document.querySelector(container);
-    const squareSide = Math.sqrt(number_of_cells);
+
+    if (cellsContainer.childNodes.length > 0) {
+
+        alert("Griglia già generata, rimuovere la precedente!");
+        return;
+    }
+
     for (let i = 1; i <= number_of_cells; i++) {
         const cell = document.createElement(element_name);
         cell.classList.add(class_name);
@@ -18,7 +24,6 @@ function generateGrid(number_of_cells, container, element_name, class_name) {
 }
 
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-
 function activateCell(selector, active_class) {
     const cells = document.querySelectorAll(selector);
 
@@ -56,4 +61,12 @@ playBtn.addEventListener("click", function() {
             alert("Error");
             break;
     }
+});
+
+// Aggiungere un bottone per resettare la griglia
+const deleteBtn = document.getElementById("deleteBtn");
+deleteBtn.addEventListener("click", function() {
+
+    location.reload();
+
 });
