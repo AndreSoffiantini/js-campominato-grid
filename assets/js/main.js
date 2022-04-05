@@ -11,50 +11,49 @@ function generateGrid(number_of_cells, container, element_name, class_name) {
     const squareSide = Math.sqrt(number_of_cells);
     for (let i = 1; i <= number_of_cells; i++) {
         const cell = document.createElement(element_name);
-        cell.style.width = calc(100 % /squareSide);
-            cell.classList.add(class_name);
-
-            cell.innerHTML = `${i}`; cellsContainer.append(cell);
-        }
+        cell.classList.add(class_name);
+        cell.innerHTML = `${i}`;
+        cellsContainer.append(cell);
     }
+}
 
-    // Leggere il valore di difficoltà inserito dall'utente e generare il corrispondente numero di caselle
-    const playBtn = document.getElementById("playBtn");
-    playBtn.addEventListener("click", function() {
+// Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
 
-        let input = document.getElementById("difficulty").value;
+function activateCell(selector, active_class) {
+    const cells = document.querySelectorAll(selector);
 
-        switch (input) {
-            case 1:
-                generateGrid(100, ".cells", "div", "cell");
-                break;
-
-            case 2:
-                generateGrid(81, ".cells", "div", "cell");
-                break;
-
-            case 3:
-                generateGrid(49, ".cells", "div", "cell");
-                break;
-
-            default:
-                alert("Error");
-                break;
-        }
-    })
-
-
-    // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-
-    function activateCell(selector, active_class) {
-        const cells = selectCells(selector);
-
-        for (let index = 0; index < cells.length; index++) {
-            const cell = cells[index];
-            cell.addEventListener('click', function() {
-                cell.classList.add(active_class);
-            })
-        }
+    for (let index = 0; index < cells.length; index++) {
+        const cell = cells[index];
+        cell.addEventListener('click', function() {
+            cell.classList.add(active_class);
+        })
     }
+}
 
-    activateCell('.cells', 'selected');
+// Leggere il valore di difficoltà inserito dall'utente e generare il corrispondente numero di caselle
+const playBtn = document.getElementById("playBtn");
+playBtn.addEventListener("click", function() {
+
+    let inputValue = document.getElementById("difficulty").value;
+
+    switch (inputValue) {
+        case "1":
+            generateGrid(100, ".grid", "div", "cell_10");
+            activateCell('.cell_10', 'selected');
+            break;
+
+        case "2":
+            generateGrid(81, ".grid", "div", "cell_9");
+            activateCell('.cell_9', 'selected');
+            break;
+
+        case "3":
+            generateGrid(49, ".grid", "div", "cell_7");
+            activateCell('.cell_7', 'selected');
+            break;
+
+        default:
+            alert("Error");
+            break;
+    }
+});

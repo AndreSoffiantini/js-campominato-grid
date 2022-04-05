@@ -38,17 +38,29 @@
     margin: 0 auto;
 }
 
-.cells {
+.grid {
     display: flex;
     flex-wrap: wrap;
 }
 
-.cell {
+[class^=cell] {
     aspect-ratio: 1;
     border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cell_10 {
+    width: 10%;
+}
+
+.cell_9 {
+    width: calc(100%/9);
+}
+
+.cell_7 {
+    width: calc(100%/7);
 }
 
 .selected {
